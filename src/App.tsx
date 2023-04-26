@@ -1,7 +1,12 @@
-import './App.css';
+import TopBar from './components/TopBar';
 
 function App() {
-  return <div>WebGL Based ImageViewer</div>;
+  return (
+    <div>
+      <TopBar />
+      WebGL Based ImageViewer
+    </div>
+  );
 }
 
 export default App;
