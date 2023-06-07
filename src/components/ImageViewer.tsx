@@ -1,19 +1,22 @@
 import { Stage, Sprite } from '@pixi/react';
 import { WheelEventHandler } from 'react';
-import sample from '../assets/sample.jpeg';
-
-const sampleImgSize = { width: 1000, height: 563 };
 
 export default function ImageViewer({
   scale,
   setScale,
+  image,
 }: {
   scale: number;
   setScale: (v: number) => void;
+  image: {
+    url: string;
+    width: number;
+    height: number;
+  };
 }) {
   const stateSize = {
-    width: sampleImgSize.width * scale,
-    height: sampleImgSize.height * scale,
+    width: image.width * scale,
+    height: image.height * scale,
   };
 
   const onWheel: WheelEventHandler = (e) => {
@@ -38,7 +41,9 @@ export default function ImageViewer({
       onWheel={onWheel}
     >
       <Stage width={stateSize.width} height={stateSize.height}>
-        <Sprite image={sample} width={stateSize.width} height={stateSize.height} />
+        {image.url && (
+          <Sprite image={image.url} width={stateSize.width} height={stateSize.height} />
+        )}
       </Stage>
     </div>
   );
